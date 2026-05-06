@@ -1,91 +1,108 @@
-"""
-ML LAB REFERENCE CLI
-Main entry point. Shows each experiment's source code, runs it,
-and displays the output.
-"""
+from experiments import (
+    exp1_eda,
+    exp2_correlation,
+    exp3_pca,
+    exp4_finds,
+    exp5_knn,
+    exp6_lwr,
+    exp7_regression,
+    exp8_decision_tree,
+    exp9_naive_bayes,
+    exp10_kmeans
+)
 
 import inspect
 
-# Import each experiment module from the experiments package
-from experiments import (
-    pca,
-    knn,
-    finds,
-    decision_tree,
-    naive_bayes,
-    kmeans,
-    regression,
-    lwr,
-    eda_histogram,
-    correlation,
-)
-
 
 def show_code(module):
-    """Print the full source code of the given experiment module."""
-    print("\n============= CODE =============\n")
+
+    print("\n============= SOURCE CODE =============\n")
+
     print(inspect.getsource(module))
-    print("\n===============================\n")
+
+    print("\n=======================================\n")
 
 
-def show_menu():
-    """Print the main menu to the terminal."""
+def menu():
+
     print("\n========================")
     print(" ML LAB REFERENCE CLI")
-    print("========================\n")
-    print("1. PCA")
-    print("2. KNN")
-    print("3. Find-S")
-    print("4. Decision Tree")
-    print("5. Naive Bayes")
-    print("6. K-Means")
-    print("7. Regression")
-    print("8. Locally Weighted Regression")
-    print("9. EDA Histogram")
-    print("10. Correlation Matrix")
+    print("========================")
+
+    print("1. Experiment 1 - EDA Histogram & Boxplot")
+    print("2. Experiment 2 - Correlation Matrix")
+    print("3. Experiment 3 - PCA")
+    print("4. Experiment 4 - Find-S")
+    print("5. Experiment 5 - KNN")
+    print("6. Experiment 6 - LWR")
+    print("7. Experiment 7 - Regression")
+    print("8. Experiment 8 - Decision Tree")
+    print("9. Experiment 9 - Naive Bayes")
+    print("10. Experiment 10 - KMeans")
     print("0. Exit")
 
 
-def main():
-    # Map menu options to (label, module)
-    options = {
-        "1": ("PCA", pca),
-        "2": ("KNN", knn),
-        "3": ("Find-S", finds),
-        "4": ("Decision Tree", decision_tree),
-        "5": ("Naive Bayes", naive_bayes),
-        "6": ("K-Means", kmeans),
-        "7": ("Regression", regression),
-        "8": ("Locally Weighted Regression", lwr),
-        "9": ("EDA Histogram", eda_histogram),
-        "10": ("Correlation Matrix", correlation),
-    }
+while True:
 
-    # Run an interactive loop until the user chooses to exit
-    while True:
-        show_menu()
-        choice = input("\nEnter your choice: ").strip()
+    menu()
 
-        if choice == "0":
-            print("Exiting. Goodbye!")
-            break
+    choice = input("\nEnter your choice: ")
 
-        if choice in options:
-            name, module = options[choice]
-            # Step 1: show the source code of the experiment
-            show_code(module)
-            # Step 2: run the experiment
-            print("============= OUTPUT =============\n")
-            try:
-                module.run()
-            except Exception as e:
-                # Catch errors so the menu does not crash
-                print(f"Error while running {name}: {e}")
-            print("\n==================================\n")
-            input("Press Enter to return to the menu...")
-        else:
-            print("Invalid choice. Please try again.")
+    if choice == "1":
 
+        show_code(exp1_eda)
+        exp1_eda.run()
 
-if __name__ == "__main__":
-    main()
+    elif choice == "2":
+
+        show_code(exp2_correlation)
+        exp2_correlation.run()
+
+    elif choice == "3":
+
+        show_code(exp3_pca)
+        exp3_pca.run()
+
+    elif choice == "4":
+
+        show_code(exp4_finds)
+        exp4_finds.run()
+
+    elif choice == "5":
+
+        show_code(exp5_knn)
+        exp5_knn.run()
+
+    elif choice == "6":
+
+        show_code(exp6_lwr)
+        exp6_lwr.run()
+
+    elif choice == "7":
+
+        show_code(exp7_regression)
+        exp7_regression.run()
+
+    elif choice == "8":
+
+        show_code(exp8_decision_tree)
+        exp8_decision_tree.run()
+
+    elif choice == "9":
+
+        show_code(exp9_naive_bayes)
+        exp9_naive_bayes.run()
+
+    elif choice == "10":
+
+        show_code(exp10_kmeans)
+        exp10_kmeans.run()
+
+    elif choice == "0":
+
+        print("Exiting...")
+        break
+
+    else:
+
+        print("Invalid Choice")
